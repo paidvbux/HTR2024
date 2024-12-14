@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Shawn</title>
+
+
+
+{% endblock %}
+{% block body %}
+
+<div class="form hidden-elementFade">
+    <div id="signup-form" class="form-background" style="display:none;">
+        <h1 class="title">Sign up</h1>
+        <br>
+        <h5 id="login-toggle" onclick="toggleLogin()">Already have an account? Log in here!</h3>
+            <h5 style="color: red;" id="signup-error"></h5>
+            <form onsubmit="signup(event)">
+                <div id="first-last">
+                    <input type="text" id="first" name="first" placeholder="First Name" autocomplete="off" required>
+                    <input type="text" id="last" name="last" placeholder="Last Name" autocomplete="off" required>
+                </div>
+            <input type="email"id="email" name="email" placeholder="Email Address" autocomplete="off" required>
+            <input type="text" id="phone" name="phone" placeholder="Phone Number" autocomplete="off">
+            <select name="user-type" id="user-type" style="appearance:none;">
+                <option value="blank">Select Account Type</option>
+                <option value="p">Patient</option>
+                <option value="d">Doctor</option>
+            </select>
+            <input type="password" id="password" name="password" placeholder="Password" autocomplete="off" required>
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" autocomplete="off" required>
+            <button type="submit" id="submit">Sign up</button>
+        </form>
+    </div>
+</div>
+
+<div class="form hidden-elementFade">
+    <div id="login-form" class="form-background">
+        <h1 class="title">Log In</h1>
+        <form onsubmit="login(event)">
+            <h5 id="login-error"></h5>
+            <h5 id="login-toggle" onclick="toggleLogin()">Don't have an account? Create an account here!</h3>
+            <input type="email" id="email-login" name="email" placeholder="Email Address" autocomplete="off" required>
+            <input type="password" id="password-login" name="password" placeholder="Password" autocomplete="off" required>
+            <button type="submit" id="submit-login">Log In</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block foot %}
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock %}

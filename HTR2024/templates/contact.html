@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+{% block body%}
+<div class="form">
+    <div class="form-background">
+        <h1>Book an Appointment</h1>
+        <form onsubmit="selectDoctor(event)">
+            <div id="select-wrapper">
+                <h3>Select a Doctor to view their schedule</h3>
+                <select id="select-doctor">    
+                    <option>Select a Doctor</option>    
+                    {% for doctor in doctors %}
+                    <option value="{{ doctor.email }}">{{ doctor.name }}</option>    
+                    {% endfor %}
+                </select>
+            </div>
+            <h3 style="color: red;" id="select-error"></h3>
+            <button id="select-submit" style="display:block;">Select</button>
+        </form>
+        <div id="calendar" style="all:unset;margin-top:10px;display:none;"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block foot %}
+<link href="{{ url_for('static', filename='css/contact.css') }}" rel="stylesheet">
+<script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,18 @@
+<div id="calendar">
+    <div class="time-slot empty"></div>
+    <div class="day-header" id="header-0"></div>
+    <div class="day-header" id="header-1"></div>
+    <div class="day-header" id="header-2"></div>
+    <div class="day-header" id="header-3"></div>
+    <div class="day-header" id="header-4"></div>
+    <div class="day-header" id="header-5"></div>
+    <div class="day-header" id="header-6"></div>
+
+    {% for hour in range(8, 23) %}
+        <div class="time-slot">{{ hour }}:00</div> 
+        {% for day in range(7) %}
+        <button id="{{day,hour}}" {% if schedule['(' ~ day ~ ',' ~ hour ~ ')'] == 'True' %} style="background-color: #aaa;" disabled {% elif appointments['(' ~ day ~ ',' ~ hour ~ ')'] == 'True' %} style="background-color:rgb(251, 133, 0,0.75);" {% endif %} class="day-cell"></button>
+        {% endfor %}
+    {% endfor %}
+</div>
+<button id="submit">Select</button>

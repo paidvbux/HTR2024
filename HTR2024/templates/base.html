@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Pulseport</title>
+        <meta charset="UTF-8">
+        <link rel="icon" href="{{ url_for('static', filename='images/dark-logo.png') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <nav>        
+            <ul>
+                <!-- <li><a href="index.html"><img src="images/wordlogo.png" width="275px"></a></li> -->
+                <li><a><img src="{{ url_for('static', filename='images/logo.png') }}" width="100px" style="margin-top: 20px;"></a></li>
+                <li><a id="nav-contact" href="contact" style="display:none;">Contact</a></li>
+                <li><a id="nav-notifs" href="schedule" style="display:none;">Schedule</a></li>
+                <li><a id="nav-login" href="login">Log in</a></li>
+                <li class="menuButton" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg"
+                            height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
+                            <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+                        </svg></a></li>
+            </ul>
+        </nav>
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <div id="body">
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    {% block foot %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+</html>

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Shawn</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .intro-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .intro-container h1 {
+        font-size: 3rem;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .problem-solution {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 20px 0;
+        text-align: left;
+    }
+
+    .problem-solution h2 {
+        font-size: 1.5rem;
+        color: #444;
+        margin-bottom: 10px;
+    }
+
+    .problem-solution p {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .features {
+        text-align: left;
+    }
+
+    .features h3 {
+        color: #444;
+        font-size: 1.2rem;
+        margin-top: 20px;
+    }
+
+    .features ul {
+        list-style: disc;
+        margin-left: 20px;
+        color: #666;
+    }
+
+    .features ul li {
+        margin: 10px 0;
+    }
+
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="intro-container">
+    <h1>Welcome to PulsePort</h1>
+    <div class="problem-solution">
+        <h2>Problem</h2>
+        <p>People overdose on prescription medication, leading to severe health risks and fatalities.</p>
+        
+        <h2>Solution</h2>
+        <p><strong>PulsePort</strong> is an innovative system designed to help users manage their medication and stay connected with healthcare professionals.</p>
+    </div>
+
+    <div class="features">
+        <h3>Key Features</h3>
+        <ul>
+            <li><strong>Admin-User System</strong>: Healthcare professionals act as Admins, guiding users through their health journey.</li>
+            <li><strong>User Reports</strong>: Users can report critical details like medication use, vitals, and emergency contacts to their Admins.</li>
+            <li><strong>Appointment Scheduling</strong>: Users can easily book drop-in meetings with their Admins for personalized support.</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block foot %}
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}

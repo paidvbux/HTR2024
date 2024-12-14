@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Shawn</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .intro-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .intro-container h1 {
+        font-size: 3rem;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .problem-solution {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 20px 0;
+        text-align: left;
+    }
+
+    .problem-solution h2 {
+        font-size: 1.5rem;
+        color: #444;
+        margin-bottom: 10px;
+    }
+
+    .problem-solution p {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .features {
+        text-align: left;
+    }
+
+    .features h3 {
+        color: #444;
+        font-size: 1.2rem;
+        margin-top: 20px;
+    }
+
+    .features ul {
+        list-style: disc;
+        margin-left: 20px;
+        color: #666;
+    }
+
+    .features ul li {
+        margin: 10px 0;
+    }
+
+    .notifications {
+        margin-top: 40px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        text-align: left;
+    }
+
+    .notifications h2 {
+        font-size: 1.5rem;
+        color: #444;
+        margin-bottom: 10px;
+    }
+
+    .notifications ul {
+        list-style: none;
+        padding: 0;
+        color: #666;
+    }
+
+    .notifications ul li {
+        margin: 10px 0;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .notifications ul li:last-child {
+        border-bottom: none;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="intro-container">
+    <div class="notifications">
+        <h2>Notifications</h2>
+        <ul id="notifications-list">
+            <!-- Notifications will be dynamically added here -->
+        </ul>
+    </div>
+
+    <div class="form" style="display:block">
+        <div class="form-background">
+            <h1>Select your Availability</h1>
+            <h3>Mark out dates and times where you are unavailable</h3>
+            <div id="calendar" style="display: grid;">
+                <div class="time-slot empty"></div>
+                <div class="day-header">Sunday</div>
+                <div class="day-header">Monday</div>
+                <div class="day-header">Tuesday</div>
+                <div class="day-header">Wednesday</div>
+                <div class="day-header">Thursday</div>
+                <div class="day-header">Friday</div>
+                <div class="day-header">Saturday</div>
+            
+                {% for hour in range(8, 23) %}
+                    <div class="time-slot">{{ hour }}:00</div> 
+                    {% for day in range(7) %}
+                    <button id="{{hour,day}}" onclick="markCalendar(event, '{{hour,day}}')" class="day-cell"></button>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            
+            <button id="submit">Select</button>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block foot %}
+<script>
+    const notifications = [
+        { name: "John Doe", message: "Appointment scheduled for 10:00 AM on Monday." },
+        { name: "Jane Smith", message: "Appointment scheduled for 2:00 PM on Wednesday." },
+        { name: "Michael Johnson", message: "Medication report submitted for review." }
+    ];
+
+    const notificationsList = document.getElementById('notifications-list');
+
+    notifications.forEach(notification => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `<strong>${notification.name}</strong>: ${notification.message}`;
+        notificationsList.appendChild(listItem);
+    });
+</script>
+<link href="{{ url_for('static', filename='css/contact.css') }}" rel="stylesheet">
+<script src="{{ url_for('static', filename='js/schedule.js') }}"></script>
+{% endblock %}
